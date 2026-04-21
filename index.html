@@ -46,7 +46,7 @@ let exchangeRate = 1545; // fallback
 // 🔥 FETCH LIVE RATE
 async function getRate() {
     try {
-        let res = await fetch("https://open.er-api.com/v6/latest/USD");
+        let res = await fetch("https://qamaralfajr.com/production/exchange_rates.php");
         let data = await res.json();
 
         exchangeRate = data.rates.IQD;
