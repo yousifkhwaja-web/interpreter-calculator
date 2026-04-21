@@ -23,7 +23,7 @@
         </select><br><br>
 
         <label>Minutes Worked:</label><br>
-        <input type="number" id="minutes" placeholder="Enter minutes" required><br><br>
+        <input type="number" id="minutes" required><br><br>
 
         <button type="submit">Calculate</button>
 
@@ -41,26 +41,35 @@
 
 <script>
 
-let exchangeRate = 1545; // fallback
+let exchangeRate = 1530; // 🔥 Iraq market default (correct for your use case)
 
-// 🔥 FETCH LIVE RATE
+// 🔥 FETCH LIVE RATE (but validate it)
 async function getRate() {
     try {
-        let res = await fetch("https://qamaralfajr.com/production/exchange_rates.php");
+        let res = await fetch("https://open.er-api.com/v6/latest/USD");
         let data = await res.json();
 
-        exchangeRate = data.rates.IQD;
+        let apiRate = data.rates.IQD;
+
+        // ⚠️ sanity check (ignore wrong global values)
+        if (apiRate > 1400 && apiRate < 1700) {
+            exchangeRate = apiRate;
+        } else {
+            exchangeRate = 1530;
+        }
 
         document.getElementById("rate").innerText =
             "1 USD = " + exchangeRate + " IQD";
 
     } catch (err) {
+        exchangeRate = 1530;
+
         document.getElementById("rate").innerText =
-            "offline mode (using fallback)";
+            "offline mode (1530 IQD)";
     }
 }
 
-// run immediately + auto update
+// run immediately + auto refresh
 getRate();
 setInterval(getRate, 10000);
 
