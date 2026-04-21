@@ -25,27 +25,51 @@
         <label>Minutes Worked:</label><br>
         <input type="number" id="minutes" placeholder="Enter minutes" required><br><br>
 
-        <!-- NEW INPUT -->
-        <label>Exchange Rate (USD → IQD):</label><br>
-        <input type="number" id="rate" value="1545" required><br><br>
-
         <button type="submit">Calculate</button>
 
     </form>
 
-    <h2>Result:</h2>
-    <p>Payment in USD: $<span id="usd">___</span></p>
-    <p>Payment in IQD: IQD <span id="iqd">___</span></p>
+    <h2>Result</h2>
+    <p>USD: $<span id="usd">---</span></p>
+    <p>IQD: <span id="iqd">---</span></p>
+
+    <p style="font-size:12px; opacity:0.7;">
+        Exchange Rate: <span id="rate">loading...</span>
+    </p>
 
 </div>
 
 <script>
+
+let exchangeRate = 1545; // fallback
+
+// 🔥 FETCH LIVE RATE
+async function getRate() {
+    try {
+        let res = await fetch("https://open.er-api.com/v6/latest/USD");
+        let data = await res.json();
+
+        exchangeRate = data.rates.IQD;
+
+        document.getElementById("rate").innerText =
+            "1 USD = " + exchangeRate + " IQD";
+
+    } catch (err) {
+        document.getElementById("rate").innerText =
+            "offline mode (using fallback)";
+    }
+}
+
+// run immediately + auto update
+getRate();
+setInterval(getRate, 10000);
+
+// 💸 CALCULATE PAYMENT
 function calculatePayment(event) {
     event.preventDefault();
 
     let hourlyRate = document.getElementById("interpreter").value;
     let minutes = document.getElementById("minutes").value;
-    let exchangeRate = document.getElementById("rate").value;
 
     let usd = (minutes / 60) * hourlyRate;
     let iqd = usd * exchangeRate;
@@ -53,6 +77,7 @@ function calculatePayment(event) {
     document.getElementById("usd").innerText = usd.toFixed(2);
     document.getElementById("iqd").innerText = iqd.toLocaleString();
 }
+
 </script>
 
 </body>
