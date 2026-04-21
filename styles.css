@@ -1,0 +1,21 @@
+body{
+    background-color: lightgray;
+    font-family: Arial;
+}
+
+#box{
+    background-color: white;
+    padding: 20px;
+    width: 300px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 10px;
+}
+
+button{
+    background-color: green;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}

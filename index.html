@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interpreter Payment Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div id="box">
+
+    <h1>💸 Interpreter Payment Calculator</h1>
+
+    <form onsubmit="calculatePayment(event)">
+
+        <label>Interpreter Name:</label><br>
+        <select id="interpreter">
+            <option value="40">Mushtaq ($40/hour)</option>
+            <option value="50">Mahdi ($50/hour)</option>
+            <option value="30">Rahand ($30/hour)</option>
+            <option value="45">Maher ($45/hour)</option>
+        </select><br><br>
+
+        <label>Minutes Worked:</label><br>
+        <input type="number" id="minutes" placeholder="Enter minutes" required><br><br>
+
+        <!-- NEW INPUT -->
+        <label>Exchange Rate (USD → IQD):</label><br>
+        <input type="number" id="rate" value="1545" required><br><br>
+
+        <button type="submit">Calculate</button>
+
+    </form>
+
+    <h2>Result:</h2>
+    <p>Payment in USD: $<span id="usd">___</span></p>
+    <p>Payment in IQD: IQD <span id="iqd">___</span></p>
+
+</div>
+
+<script>
+function calculatePayment(event) {
+    event.preventDefault();
+
+    let hourlyRate = document.getElementById("interpreter").value;
+    let minutes = document.getElementById("minutes").value;
+    let exchangeRate = document.getElementById("rate").value;
+
+    let usd = (minutes / 60) * hourlyRate;
+    let iqd = usd * exchangeRate;
+
+    document.getElementById("usd").innerText = usd.toFixed(2);
+    document.getElementById("iqd").innerText = iqd.toLocaleString();
+}
+</script>
+
+</body>
+</html>
