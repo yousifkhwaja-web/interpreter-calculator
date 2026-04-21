@@ -8,48 +8,33 @@
 
 <body>
 
-<div class="container">
+<div id="box">
 
-    <div class="card">
+    <h1>💸 Interpreter Payment Calculator</h1>
 
-        <h1>💸 Payment Calculator</h1>
-        <p class="sub">Simple & fast interpreter earnings tool</p>
+    <form onsubmit="calculatePayment(event)">
 
-        <form onsubmit="calculatePayment(event)">
+        <label>Interpreter Name:</label><br>
+        <select id="interpreter">
+            <option value="40">Mushtaq ($40/hour)</option>
+            <option value="50">Mahdi ($50/hour)</option>
+            <option value="30">Rahand ($30/hour)</option>
+            <option value="45">Maher ($45/hour)</option>
+        </select><br><br>
 
-            <label>Interpreter</label>
-            <select id="interpreter">
-                <option value="40">Mushtaq ($40/hr)</option>
-                <option value="50">Mahdi ($50/hr)</option>
-                <option value="30">Rahand ($30/hr)</option>
-                <option value="45">Maher ($45/hr)</option>
-            </select>
+        <label>Minutes Worked:</label><br>
+        <input type="number" id="minutes" required><br><br>
 
-            <label>Minutes Worked</label>
-            <input type="number" id="minutes" placeholder="Enter minutes" required>
+        <label>Exchange Rate (USD → IQD):</label><br>
+        <input type="number" id="rate" value="1530" required><br><br>
 
-            <label>Exchange Rate (USD → IQD)</label>
-            <input type="number" id="rate" value="1530" required>
+        <button type="submit">Calculate</button>
 
-            <button type="submit">Calculate</button>
+    </form>
 
-        </form>
-
-        <div class="result">
-
-            <div class="box">
-                <h3>USD</h3>
-                <p>$<span id="usd">---</span></p>
-            </div>
-
-            <div class="box">
-                <h3>IQD</h3>
-                <p><span id="iqd">---</span></p>
-            </div>
-
-        </div>
-
-    </div>
+    <h2>Result</h2>
+    <p>USD: $<span id="usd">---</span></p>
+    <p>IQD: <span id="iqd">---</span></p>
 
 </div>
 
