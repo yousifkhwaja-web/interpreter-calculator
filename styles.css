@@ -2,7 +2,6 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 
-    /* soft background so transparency shows */
     background: linear-gradient(135deg, #e9eef5, #f8fafc);
 }
 
@@ -11,13 +10,11 @@ body {
     max-width: 420px;
     margin: 80px auto;
 
-    /* 🔥 transparent white */
     background: rgba(255, 255, 255, 0.75);
 
     padding: 28px;
     border-radius: 14px;
 
-    /* soft glass effect */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
@@ -42,13 +39,22 @@ label {
 
 input, select {
     width: 100%;
-    padding: 12px;
+    box-sizing: border-box;
+    height: 44px;
+
+    padding: 0 12px;
     border-radius: 10px;
     border: 1px solid #d1d5db;
     font-size: 14px;
 
     background: rgba(255,255,255,0.8);
     transition: 0.2s;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 input:focus, select:focus {
@@ -81,6 +87,12 @@ h2 {
     color: #111827;
 }
 
+p {
+    text-align: center;
+    font-size: 16px;
+    color: #374151;
+    margin: 6px 0;
+}
 p {
     text-align: center;
     font-size: 16px;
