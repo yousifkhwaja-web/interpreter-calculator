@@ -2,8 +2,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 
-    /* softer background so transparency pops */
-    background: linear-gradient(135deg, #dbeafe, #f1f5f9);
+    background: linear-gradient(135deg, #e9eef5, #f8fafc);
 }
 
 #box {
@@ -11,19 +10,15 @@ body {
     max-width: 420px;
     margin: 80px auto;
 
-    /* 🔥 more transparent than before */
     background: rgba(255, 255, 255, 0.45);
 
     padding: 28px;
     border-radius: 14px;
 
-    /* stronger glass blur */
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-
-    /* lighter border for glass feel */
     border: 1px solid rgba(255,255,255,0.25);
 }
 
@@ -50,25 +45,21 @@ input, select {
     padding: 0 12px;
     border-radius: 10px;
 
-    border: 1px solid rgba(209, 213, 219, 0.6);
-
+    border: 1px solid #d1d5db;
     font-size: 14px;
 
-    /* slightly transparent inputs too */
-    background: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.7);
 
-    transition: 0.2s;
-}
-
-select {
-    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+    appearance: none;
+
+    line-height: normal;
 }
 
 input:focus, select:focus {
     border-color: #3b82f6;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.9);
     outline: none;
 }
 
@@ -77,18 +68,17 @@ button {
     margin-top: 18px;
     padding: 12px;
 
-    background: rgba(37, 99, 235, 0.9);
+    background: #2563eb;
     color: white;
     border: none;
     border-radius: 10px;
 
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
 }
 
 button:hover {
-    background: rgba(29, 78, 216, 0.95);
+    background: #1d4ed8;
 }
 
 h2 {
