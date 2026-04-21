@@ -1,93 +1,71 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    background: #f3f4f6;
 }
 
-.container {
-    width: 100%;
-    max-width: 420px;
-    padding: 20px;
-}
-
-.card {
-    background: #1e293b;
+#box {
+    width: 90%;
+    max-width: 400px;
+    margin: 80px auto;
+    background: white;
     padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 h1 {
-    margin: 0;
     font-size: 22px;
-}
-
-.sub {
-    font-size: 12px;
-    opacity: 0.7;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 label {
+    font-size: 14px;
     display: block;
     margin-top: 12px;
     margin-bottom: 5px;
-    font-size: 13px;
-    opacity: 0.9;
 }
 
 input, select {
     width: 100%;
     padding: 10px;
-    border-radius: 10px;
-    border: none;
+    border-radius: 8px;
+    border: 1px solid #ddd;
     outline: none;
-    background: #334155;
-    color: white;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    border-color: #3b82f6;
 }
 
 button {
     width: 100%;
     margin-top: 15px;
-    padding: 12px;
+    padding: 10px;
+    background: #3b82f6;
+    color: white;
     border: none;
-    border-radius: 10px;
-    background: #38bdf8;
-    color: black;
-    font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 button:hover {
-    background: #0ea5e9;
+    background: #2563eb;
 }
 
-.result {
-    display: flex;
-    justify-content: space-between;
+h2 {
     margin-top: 20px;
-    gap: 10px;
-}
-
-.box {
-    flex: 1;
-    background: #0f172a;
-    padding: 12px;
-    border-radius: 12px;
+    font-size: 18px;
     text-align: center;
 }
 
-.box h3 {
-    margin: 0;
-    font-size: 14px;
-    opacity: 0.7;
+p {
+    text-align: center;
+    font-size: 16px;
 }
-
 .box p {
     margin: 5px 0 0;
     font-size: 18px;
