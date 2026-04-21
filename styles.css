@@ -1,24 +1,35 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f3f4f6; /* old clean light background */
+
+    /* soft background so transparency shows */
+    background: linear-gradient(135deg, #e9eef5, #f8fafc);
 }
 
 #box {
     width: 90%;
     max-width: 420px;
     margin: 80px auto;
-    background: #ffffff; /* keep old white box */
+
+    /* 🔥 transparent white */
+    background: rgba(255, 255, 255, 0.75);
+
     padding: 28px;
     border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* softer modern shadow */
+
+    /* soft glass effect */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255,255,255,0.4);
 }
 
 h1 {
     text-align: center;
     font-size: 22px;
     margin-bottom: 22px;
-    color: #111827; /* cleaner dark text */
+    color: #111827;
 }
 
 label {
@@ -35,13 +46,14 @@ input, select {
     border-radius: 10px;
     border: 1px solid #d1d5db;
     font-size: 14px;
-    background: #f9fafb;
+
+    background: rgba(255,255,255,0.8);
     transition: 0.2s;
 }
 
 input:focus, select:focus {
     border-color: #3b82f6;
-    background: #fff;
+    background: white;
     outline: none;
 }
 
@@ -49,7 +61,8 @@ button {
     width: 100%;
     margin-top: 18px;
     padding: 12px;
-    background: #2563eb; /* modern blue but still clean */
+
+    background: #2563eb;
     color: white;
     border: none;
     border-radius: 10px;
