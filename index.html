@@ -25,6 +25,9 @@
         <label>Minutes Worked:</label><br>
         <input type="number" id="minutes" required><br><br>
 
+        <label>Exchange Rate (USD → IQD):</label><br>
+        <input type="number" id="rate" value="1530" required><br><br>
+
         <button type="submit">Calculate</button>
 
     </form>
@@ -33,52 +36,16 @@
     <p>USD: $<span id="usd">---</span></p>
     <p>IQD: <span id="iqd">---</span></p>
 
-    <p style="font-size:12px; opacity:0.7;">
-        Exchange Rate: <span id="rate">loading...</span>
-    </p>
-
 </div>
 
 <script>
 
-let exchangeRate = 1530; // 🔥 Iraq market default (correct for your use case)
-
-// 🔥 FETCH LIVE RATE (but validate it)
-async function getRate() {
-    try {
-        let res = await fetch("https://open.er-api.com/v6/latest/USD");
-        let data = await res.json();
-
-        let apiRate = data.rates.IQD;
-
-        // ⚠️ sanity check (ignore wrong global values)
-        if (apiRate > 1400 && apiRate < 1700) {
-            exchangeRate = apiRate;
-        } else {
-            exchangeRate = 1530;
-        }
-
-        document.getElementById("rate").innerText =
-            "1 USD = " + exchangeRate + " IQD";
-
-    } catch (err) {
-        exchangeRate = 1530;
-
-        document.getElementById("rate").innerText =
-            "offline mode (1530 IQD)";
-    }
-}
-
-// run immediately + auto refresh
-getRate();
-setInterval(getRate, 10000);
-
-// 💸 CALCULATE PAYMENT
 function calculatePayment(event) {
     event.preventDefault();
 
     let hourlyRate = document.getElementById("interpreter").value;
     let minutes = document.getElementById("minutes").value;
+    let exchangeRate = document.getElementById("rate").value;
 
     let usd = (minutes / 60) * hourlyRate;
     let iqd = usd * exchangeRate;
