@@ -1,73 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Interpreter Payment Calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<title>Interpreter Payment Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
 <div id="box">
 
-    <h1>💸 Interpreter Payment Calculator</h1>
+  <div class="header">
+    <span class="eyebrow">Pay calculator</span>
+    <h1>Interpreter Payment</h1>
+  </div>
 
-    <form onsubmit="calculatePayment(event)">
+  <form onsubmit="calculatePayment(event)">
 
-        <label>Interpreter Name</label>
-        <select id="interpreter">
-            <option value="40">Mushtaq ($40/hour)</option>
-            <option value="50">Mahdi ($50/hour)</option>
-            <option value="30">Rahand ($30/hour)</option>
-            <option value="45">Maher ($45/hour)</option>
-        </select>
+    <div class="field">
+      <label for="interpreter">Interpreter</label>
+      <select id="interpreter">
+        <option value="40">Mushtaq — $40/hr</option>
+        <option value="50">Mahdi — $50/hr</option>
+        <option value="30">Rahand — $30/hr</option>
+        <option value="45">Maher — $45/hr</option>
+      </select>
+    </div>
 
-        <label>Minutes Worked</label>
-        <input 
-            type="number" 
-            id="minutes" 
-            inputmode="numeric"
-            pattern="[0-9]*"
-            required
+    <div class="field-row">
+      <div class="field">
+        <label for="minutes">Minutes worked</label>
+        <input
+          type="number"
+          id="minutes"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          placeholder="0"
+          required
         >
+      </div>
 
-        <label>Exchange Rate (USD → IQD)</label>
-        <input 
-            type="number" 
-            id="rate" 
-            inputmode="decimal"
-            pattern="[0-9]*"
-            value="1530"
-            required
+      <div class="field">
+        <label for="rate">USD → IQD rate</label>
+        <input
+          type="number"
+          id="rate"
+          inputmode="decimal"
+          pattern="[0-9]*"
+          value="1530"
+          required
         >
+      </div>
+    </div>
 
-        <button type="submit">Calculate</button>
+    <button type="submit">Calculate</button>
+  </form>
 
-    </form>
-
-    <h2>Result</h2>
-    <p>USD: $<span id="usd">---</span></p>
-    <p><strong>IQD:</strong> IQD <span id="iqd">---</span></p>
+  <div class="receipt">
+    <div class="receipt-divider" aria-hidden="true"></div>
+    <div class="receipt-row">
+      <span class="receipt-label">USD</span>
+      <span class="receipt-value">$<span id="usd">0.00</span></span>
+    </div>
+    <div class="receipt-row total">
+      <span class="receipt-label">IQD</span>
+      <span class="receipt-value">د.ع<span id="iqd">0</span></span>
+    </div>
+  </div>
 
 </div>
 
 <script>
-
 function calculatePayment(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    let hourlyRate = document.getElementById("interpreter").value;
-    let minutes = document.getElementById("minutes").value;
-    let exchangeRate = document.getElementById("rate").value;
+  let hourlyRate = parseFloat(document.getElementById("interpreter").value);
+  let minutes = parseFloat(document.getElementById("minutes").value);
+  let exchangeRate = parseFloat(document.getElementById("rate").value);
 
-    let usd = (minutes / 60) * hourlyRate;
-    let iqd = usd * exchangeRate;
+  let usd = (minutes / 60) * hourlyRate;
+  let iqd = usd * exchangeRate;
 
-    document.getElementById("usd").innerText = usd.toFixed(2);
-    document.getElementById("iqd").innerText = iqd.toLocaleString();
+  document.getElementById("usd").innerText = usd.toFixed(2);
+  document.getElementById("iqd").innerText = " " + iqd.toLocaleString(undefined, {maximumFractionDigits: 0});
+
+  document.querySelector(".receipt").classList.add("revealed");
 }
-
 </script>
 
+</body>
+</html>
 </body>
 </html>
